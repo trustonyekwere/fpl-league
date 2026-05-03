@@ -36,7 +36,7 @@ function RankBadge({ rank }: { rank: number }) {
     )
   if (rank === 3)
     return (
-      <span className="inline-flex w-6 h-6 items-center justify-center rounded bg-white/8 text-snow/45 border border-gray-600 text-md p-3 font-bold">
+      <span className="inline-flex w-6 h-6 items-center justify-center rounded bg-white/[0.04] text-snow/45 border border-white/[0.07] text-md p-3 font-bold">
         3
       </span>
     )

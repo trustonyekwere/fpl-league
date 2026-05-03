@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import LiveBar from '@/components/LiveBar'
+import Pod from '@/components/Pod'
 import Results from '@/components/Results'
 import LeagueTable from '@/components/LeagueTable'
 import Podium from '@/components/Podium'
@@ -17,9 +18,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <LiveBar />
+      <Pod />
 
       {/* Main body: two-column layout */}
-      <div className="grid grid-cols-[2fr_1fr] max-w-6xl mx-auto border-b border-blue-500/10">
+      <div className="grid grid-cols-[1.5fr_1fr] max-w-6xl mx-auto border-b border-blue-500/10">
 
         {/* Left: Results + League Table */}
         <main className="flex-1 border-r border-blue-500/10 divide-y divide-white/[0.04]">
