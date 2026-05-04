@@ -76,7 +76,7 @@ export default function LeagueTable() {
           ))}
         </tbody>
       </table>
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-14">
         <button className="mt-5 px-5 py-2.5 text-md font-bold tracking-[0.15em] uppercase  border border-blue-500/40 rounded-lg hover:bg-transparent bg-blue-500 hover:text-blue-400 hover:scale-105 text-white transition-all duration-200 cursor-pointer flex items-center justify-center gap-1">
             FULL TABLE <ArrowUpRight size={22} />
         </button>

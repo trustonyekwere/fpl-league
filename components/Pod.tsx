@@ -1,6 +1,6 @@
 export default function Pod() {
     return (
-        <div className="grid grid-cols-1 bg-[#0f172a] border-b pt-5 border-blue-500/10">
+        <div className="grid grid-cols-1 bg-[#0f172a] border-b pt-5 px-6 border-blue-500/10">
             <div className="max-w-6xl mx-auto w-full">
                 {/* Fixture of the Week */}
                 <div>
