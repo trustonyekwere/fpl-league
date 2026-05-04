@@ -45,7 +45,7 @@ function RankBadge({ rank }: { rank: number }) {
 
 export default function LeagueTable() {
   return (
-    <section>
+    <section className="px-6 md:px-0">
       <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow/30 mb-4">
         League Table
       </p>

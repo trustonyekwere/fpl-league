@@ -9,7 +9,7 @@ const fixtures = [
 
 export default function NextFixtures() {
   return (
-    <div>
+    <div className="px-6 md:px-0">
       <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow/30 mb-4">
         Next Fixtures
       </p>

@@ -8,7 +8,7 @@ const winners = [
 
 export default function Motm() {
     return (
-        <div>
+        <div className="px-6 md:px-0">
             <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow/30 mb-4">
                 Manager of the Month
             </p>

@@ -20,11 +20,11 @@ export default function Home() {
       <Podium />
 
       {/* Main body: two-column layout */}
-      <div className="grid grid-cols-[1.5fr_1fr] max-w-6xl mx-auto border-b border-blue-500/10">
+      <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] max-w-6xl lg:px-0 px-6 mx-auto border-b border-blue-500/10">
 
         {/* Left: Results + League Table */}
         <main className="flex-1 border-r border-blue-500/10 divide-y divide-white/[0.04]">
-          <div className="pe-16 py-6">
+          <div className="md:pe-16 py-6">
             <Results />
           </div>
           <div className="md:pe-16 py-6">
@@ -34,16 +34,16 @@ export default function Home() {
 
         {/* Right: Sidebar */}
         <aside className="w-full shrink-0 flex flex-col divide-y divide-white/[0.04]">
-          <div className="ps-16 py-6">
+          <div className="md:ps-16 py-6">
             <NextFixtures />
           </div>
-          <div className="ps-16 py-6">
+          <div className="md:ps-16 py-6">
             <WeeklyWinners />
           </div>
-          <div className="ps-16 py-6">
+          <div className="md:ps-16 py-6">
             <Motm />
           </div>
-          <div className="ps-16 py-6">
+          <div className="md:ps-16 py-6">
             <Insights />
           </div>
         </aside>
