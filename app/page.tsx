@@ -11,6 +11,7 @@ import Insights from "../components/Insights";
 import Partners from "../components/Partners";
 import Footer from "../components/Footer";
 import FplPreview from "../components/FplPreview";
+import { ArrowUpRight } from "lucide-react";
 
 export default async function Home() {
   // Fetch minimal FPL bootstrap data server-side and pass to a lightweight preview
@@ -65,6 +66,11 @@ export default async function Home() {
           </div>
           <div className="md:pe-16 py-6">
             <LeagueTable miniEntries={miniResults} />
+            <div className="flex justify-center pb-14">
+                <button className="mt-5 px-5 py-2.5 text-md font-bold tracking-[0.15em] uppercase  border border-blue-500/40 rounded-lg hover:bg-transparent bg-blue-500 hover:text-blue-400 hover:scale-105 text-white transition-all duration-200 cursor-pointer flex items-center justify-center gap-1">
+                FULL TABLE <ArrowUpRight size={22} />
+                </button>
+            </div>
           </div>
         </main>
 

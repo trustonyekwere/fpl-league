@@ -1,15 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
-const links = ["Home", "Live", "Standings", "Winners"];
+const links = [
+    { name: "Home", href: "/" },
+    { name: "Live", href: "/live" },
+    { name: "Standings", href: "/standings" },
+    { name: "Winners", href: "/winners" },
+];
 
 export default function Navbar() {
     const [active, setActive] = useState("Home");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { darkMode, toggle } = useTheme();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const activeLink = links.find(link => link.href === pathname);
+        if (activeLink) {
+            setActive(activeLink.name);
+        }
+    }, [pathname]);
 
     return (
         <>
@@ -32,15 +46,16 @@ export default function Navbar() {
                 const activeClasses =
                     "text-blue-600 border-b border-blue-600 pb-0.5 dark:text-blue-400 dark:border-blue-400";
                 const inactiveClasses =
-                    "text-gray-600 hover:text-gray-800 dark:text-snow/40 dark:hover:text-snow/70";
+                    "text-gray-600 hover:text-gray-800 dark:text-snow dark:hover:text-snow/70";
                 return (
-                    <button
-                    key={link}
-                    onClick={() => setActive(link)}
-                    className={`${base} ${active === link ? activeClasses : inactiveClasses}`}
-                    >
-                    {link}
-                    </button>
+                    <a
+                        key={link.name}
+                        href={link.href}
+                        onClick={() => setActive(link.name)}
+                        className={`${base} ${active === link.name ? activeClasses : inactiveClasses}`}
+                        >
+                        {link.name}
+                    </a>
                 );
                 })}
             </div>
@@ -104,18 +119,18 @@ export default function Navbar() {
             <div className="flex flex-col px-6 pt-6 pb-12 gap-4">
                 {links.map((link) => (
                 <button
-                    key={link}
+                    key={link.name}
                     onClick={() => {
-                    setActive(link);
+                    setActive(link.name);
                     setMobileMenuOpen(false);
                     }}
                     className={`text-left text-sm font-light tracking-widest transition-colors duration-200 py-2 border-l-2 pl-3 ${
-                    active === link
+                    active === link.name
                         ? "text-blue-600 border-blue-600 dark:text-blue-400 dark:border-blue-400"
                         : "text-gray-600 border-transparent hover:text-gray-800 dark:text-snow/40 dark:hover:text-snow/70"
                     }`}
                 >
-                    {link}
+                    {link.name}
                 </button>
                 ))}
             </div>

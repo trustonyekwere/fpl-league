@@ -51,57 +51,51 @@ export default function LeagueTable({
 
     return (
         <section className="px-6 md:px-0">
-        <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow mb-4">
-            League Table
-        </p>
+            <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow mb-4">
+                League Table
+            </p>
 
-        <table className="w-full border-collapse">
-            <thead>
-            <tr>
-                <th className="text-left text-sm font-semibold tracking-[0.15em] text-red-400 pb-3 w-8">
-                Rank
-                </th>
-                <th className="text-left text-sm font-semibold tracking-[0.15em] text-red-400 pb-3">
-                Team
-                </th>
-                <th className="text-right text-sm font-semibold tracking-[0.15em] text-red-400 pb-3">
-                Total Points
-                </th>
-            </tr>
-            </thead>
-
-            <tbody>
-            {display.map((s) => (
-                <tr
-                key={`${s.team}-${s.rank}`}
-                className="border-t border-white/[0.04] group"
-                >
-                <td className="py-3 pr-3 dark:text-white text-black">
-                    <RankBadge rank={s.rank} />
-                </td>
-                <td className="py-3">
-                    <p
-                    className={`text-lg font-semibold leading-tight ${s.rank === 1 ? "text-blue-400" : "text-snow"}`}
-                    >
-                    {s.team}
-                    </p>
-                    <p className="text-xs text-mist mt-0.5">{s.manager}</p>
-                </td>
-                <td
-                    className={`py-3 text-right text-sm font-black ${s.rank === 1 ? "text-blue-400" : "text-snow"}`}
-                >
-                    {s.pts.toLocaleString()}
-                </td>
+            <table className="w-full border-collapse">
+                <thead>
+                <tr>
+                    <th className="text-left text-sm font-semibold tracking-[0.15em] text-red-400 pb-3 w-8">
+                    Rank
+                    </th>
+                    <th className="text-left text-sm font-semibold tracking-[0.15em] text-red-400 pb-3">
+                    Team
+                    </th>
+                    <th className="text-right text-sm font-semibold tracking-[0.15em] text-red-400 pb-3">
+                    Total Points
+                    </th>
                 </tr>
-            ))}
-            </tbody>
-        </table>
+                </thead>
 
-        <div className="flex justify-center pb-14">
-            <button className="mt-5 px-5 py-2.5 text-md font-bold tracking-[0.15em] uppercase  border border-blue-500/40 rounded-lg hover:bg-transparent bg-blue-500 hover:text-blue-400 hover:scale-105 text-white transition-all duration-200 cursor-pointer flex items-center justify-center gap-1">
-            FULL TABLE <ArrowUpRight size={22} />
-            </button>
-        </div>
+                <tbody>
+                {display.map((s) => (
+                    <tr
+                    key={`${s.team}-${s.rank}`}
+                    className="border-t border-white/[0.04] group"
+                    >
+                    <td className="py-3 pr-3 dark:text-white text-black">
+                        <RankBadge rank={s.rank} />
+                    </td>
+                    <td className="py-3">
+                        <p
+                        className={`text-lg font-semibold leading-tight ${s.rank === 1 ? "text-blue-400" : "text-snow"}`}
+                        >
+                        {s.team}
+                        </p>
+                        <p className="text-xs text-mist mt-0.5">{s.manager}</p>
+                    </td>
+                    <td
+                        className={`py-3 text-right text-sm font-black ${s.rank === 1 ? "text-blue-400" : "text-snow"}`}
+                    >
+                        {s.pts.toLocaleString()}
+                    </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
         </section>
     );
 }
