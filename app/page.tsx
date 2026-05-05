@@ -1,27 +1,46 @@
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import Pod from '@/components/Pod'
-import Results from '@/components/Results'
-import LeagueTable from '@/components/LeagueTable'
-import Podium from '@/components/Podium'
-import NextFixtures from '@/components/NextFixtures'
-import WeeklyWinners from '@/components/WeeklyWinners'
-import Motm from '@/components/Motm'
-import Insights from '@/components/Insights'
-import Partners from '@/components/Partners'
-import Footer from '@/components/Footer'
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Pod from "@/components/Pod";
+import Results from "@/components/Results";
+import LeagueTable from "@/components/LeagueTable";
+import Podium from "@/components/Podium";
+import NextFixtures from "@/components/NextFixtures";
+import WeeklyWinners from "@/components/WeeklyWinners";
+import Motm from "@/components/Motm";
+import Insights from "@/components/Insights";
+import Partners from "@/components/Partners";
+import Footer from "@/components/Footer";
+import FplPreview from "../components/FplPreview";
 
-export default function Home() {
+export default async function Home() {
+  // Fetch minimal FPL bootstrap data server-side and pass to a lightweight preview
+  const res = await fetch(
+    "https://fantasy.premierleague.com/api/bootstrap-static/",
+    { next: { revalidate: 60 } },
+  );
+  const fpl: FplBootstrap = await res.json();
+  const currentEvent =
+    fpl.events.find((e) => e.is_current) ||
+    fpl.events.find((e) => e.is_next) ||
+    fpl.events[0];
+  const topPlayers = [...fpl.elements]
+    .sort((a, b) => b.total_points - a.total_points)
+    .slice(0, 5);
+
   return (
     <div className="min-h-screen bg-[#080e1f] text-slate-100">
       <Navbar />
       <Hero />
+      <FplPreview
+        currentEvent={currentEvent}
+        topPlayers={topPlayers}
+        teams={fpl.teams}
+      />
       <Pod />
       <Podium />
 
       {/* Main body: two-column layout */}
       <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] max-w-6xl lg:px-0 px-6 mx-auto border-b border-blue-500/10">
-
         {/* Left: Results + League Table */}
         <main className="flex-1 border-r border-blue-500/10 divide-y divide-white/[0.04]">
           <div className="md:pe-16 py-6">
@@ -54,5 +73,5 @@ export default function Home() {
 
       <Footer />
     </div>
-  )
+  );
 }
