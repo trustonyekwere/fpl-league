@@ -9,7 +9,7 @@ const winners = [
 export default function WeeklyWinners() {
   return (
     <div className="px-6 md:px-0">
-      <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow/30 mb-4">
+      <p className="text-lg font-bold tracking-[0.2em] uppercase text-snow mb-4">
         Weekly Winners
       </p>
       <table className="w-full border-collapse">
@@ -23,10 +23,10 @@ export default function WeeklyWinners() {
         <tbody>
           {winners.map((w) => (
             <tr key={w.gw} className="border-t border-white/[0.04] hover:bg-white/[0.04]">
-              <td className="py-2 ps-3 text-sm font-bold tracking-wider text-snow/25">
+              <td className="py-2 ps-3 text-sm font-bold tracking-wider text-snow">
                 GW{w.gw}
               </td>
-              <td className="py-2 text-sm text-snow/60">{w.team}</td>
+              <td className="py-2 text-sm text-snow">{w.team}</td>
               <td className="py-2 pe-3 text-sm font-semibold text-snow text-right">{w.pts}</td>
             </tr>
           ))}

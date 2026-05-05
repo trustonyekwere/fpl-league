@@ -1,15 +1,15 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Pod from "@/components/Pod";
-import Results from "@/components/Results";
-import LeagueTable from "@/components/LeagueTable";
-import Podium from "@/components/Podium";
-import NextFixtures from "@/components/NextFixtures";
-import WeeklyWinners from "@/components/WeeklyWinners";
-import Motm from "@/components/Motm";
-import Insights from "@/components/Insights";
-import Partners from "@/components/Partners";
-import Footer from "@/components/Footer";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Pod from "../components/Pod";
+import Results from "../components/Results";
+import LeagueTable from "../components/LeagueTable";
+import Podium from "../components/Podium";
+import NextFixtures from "../components/NextFixtures";
+import WeeklyWinners from "../components/WeeklyWinners";
+import Motm from "../components/Motm";
+import Insights from "../components/Insights";
+import Partners from "../components/Partners";
+import Footer from "../components/Footer";
 import FplPreview from "../components/FplPreview";
 
 export default async function Home() {
@@ -27,10 +27,27 @@ export default async function Home() {
     .sort((a, b) => b.total_points - a.total_points)
     .slice(0, 5);
 
+  // fixtures for the current event (fixture of the week = first fixture)
+  const fixturesRes = await fetch(
+    `https://fantasy.premierleague.com/api/fixtures/?event=${currentEvent.id}`,
+    { next: { revalidate: 60 } },
+  );
+  const fixtures: FplFixture[] = await fixturesRes.json();
+  const fixtureOfWeek = fixtures && fixtures.length ? fixtures[0] : undefined;
+
+  // mini-league standings (mini league id: 6268)
+  const miniRes = await fetch(
+    "https://fantasy.premierleague.com/api/leagues-classic/6268/standings/",
+    { next: { revalidate: 300 } },
+  );
+  const miniJson = await miniRes.json();
+  const miniResults: MiniLeagueResult[] =
+    miniJson.standings?.results || miniJson.results || [];
+
   return (
-    <div className="min-h-screen bg-[#080e1f] text-slate-100">
+    <div className="min-h-screen bg-white dark:bg-[#0f172a] text-slate-100">
       <Navbar />
-      <Hero />
+      <Hero fixture={fixtureOfWeek} teams={fpl.teams} />
       <FplPreview
         currentEvent={currentEvent}
         topPlayers={topPlayers}
@@ -47,7 +64,7 @@ export default async function Home() {
             <Results />
           </div>
           <div className="md:pe-16 py-6">
-            <LeagueTable />
+            <LeagueTable miniEntries={miniResults} />
           </div>
         </main>
 

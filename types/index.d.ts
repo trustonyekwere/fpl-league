@@ -39,3 +39,26 @@ interface FplBootstrap {
   elements: FplElement[];
   teams: FplTeam[];
 }
+
+interface FplFixture {
+  id: number;
+  event: number;
+  kickoff_time: string;
+  team_h: number;
+  team_a: number;
+  team_h_score?: number;
+  team_a_score?: number;
+}
+
+interface MiniLeagueResult {
+  rank: number;
+  entry: number;
+  entry_name: string;
+  player_name: string;
+  total: number;
+  event_total: number;
+}
+
+interface MiniLeagueStandings {
+  standings: { results: MiniLeagueResult[] };
+}
